@@ -514,3 +514,222 @@ const pathToFile = path.jon(__dirname, 'app.js');   // ok
 // Avoid using __proto__ 
 const foo = obj.__proto__   // avoid
 const foo = Object.getPrototypeOf(obj) // ok
+
+// No redeclaring variables
+let name = 'John';
+let name = 'Jane';      // avoid
+
+let name = 'John';
+name = 'Jane'       // ok
+
+// Avoid multiple spaces in regular expression literals
+const regexp = /text    value/      // avoid
+const regesxp = /test   {3}value/   // ok
+const regexp = /test value/  // ok
+
+// Assignments in return statements must be surrounded by parentheses
+function sum (a, b) {
+    return result = a + b;   // avoid
+}
+
+function sum (a, b) {
+    return (result = a + b);    // ok
+}
+
+// Avoid comparing a variable to itself
+if (score === score) {}     // avoid
+
+// Avoid using the comma operator
+if (doSomething(), !!test) {}   // avoid
+
+// Restricted names should not be shadowed
+let undefined = 'value'         // avoid
+
+// Sparse arrays are not allowed
+let fruits = ['apple',, 'orange'];      // avoid
+
+// Tabs should not be used
+
+// Regular strings must not contain template literal placeholders
+const message = 'Hello ${name}';     // avoid
+const message = `Hello ${name}`;    // ok
+
+// super() must be called before using this
+class Dog extends Animal {
+    constructor () {
+        this.legs = 4;      // avoid
+        super();
+    }
+}
+
+// Only throw an Error object
+throw 'error';      // avoid
+throw new Error('error');   // ok
+
+// Whitespace not allowed at end of line
+
+// Initializing to undefined is not allowed
+let name = undefined    // avoid
+
+let name
+name = 'value';     // ok
+
+// No unmodified conditions of loops
+for (let i = 0; i < items.length; j++) {...}        // avoid
+for (let i = 0; i < items.length; i++) {...}        // ok
+
+// No ternary operators when simpler alternatives exist.
+let score = val ? val : 0       // avoid
+let score = val || 0        // ok
+
+// no unreachable code after return, throw, continue and break statements
+function doSomething () {
+    return true;
+    console.log('never called');    // avoid
+}
+
+// No flow control statements in finally blocks
+try {
+    // ... 
+} catch (e) {
+    // ... 
+} finally {
+    return 42;      // avoid
+}
+
+// The left operand of relational operators must not be negated
+if (!key in obj) {}     // avoid
+if (!(key in obj)) {}   // ok
+
+// Avoid unnecessary use of .call() and .apply()
+sum.call(null, 1, 2, 3)     // avoid
+
+// Avoid using unnecesary computed property keys on objects
+const user = { ['name']: 'John Doe' }       // avoid
+const user = { name: 'John Doe' }           // ok
+
+// No unnecessary constructor
+class Car {
+    constructor () {
+        // avoid
+    }
+}
+
+// No unnecessary use of escape
+let message = 'Hell\o';         // avoid
+
+// Renaming import, export and destructured assignments to the same name is not allowed.
+import { config as config } from './config';            // avoid
+import { condig } from './config';
+
+// No whitespace before properties
+user .name      // avoid
+user.name       // ok
+
+// No using with statements
+with (val) {...}        // avoid
+
+// Maintain consistency of newlines between object properties
+const user = {
+    name: 'Jane Doe', age: 30,
+    username: 'jdoe86'              // avoid
+}
+
+const user = { name: 'Jane Doe', age: 30, username: 'jdoe86' } // ok
+// ok
+const user = {
+    name: 'Jane Doe',
+    age: 30,
+    username: 'jdoe86',
+}
+
+// No padding within blocks
+if (user) {
+    // avoid
+    const name = getName()
+
+
+}
+
+
+if (user) {
+    const name = getName()      // ok
+}
+
+// No whitespace between spread operators and their expressions
+fn(... args)    // avoid
+fn(... args)    // ok
+
+// Semicolons must have a space after and no space before
+for (let i = 0 ;i < items.length ; i++) {...} // avoid
+for (let i = 0; i < items.length; i++) {...} // ok
+
+// Must have a space before blocks
+if (admin){...}    // avoid
+if (admin) {...}    // ok
+
+// No spaces inside parentheses
+getName( name )     // avoid
+getName(name)       // ok
+
+// Unary operators must have a space after
+typeof!admin    // avoid
+typeof !admin   // ok
+
+// Use spaces inside comments
+//comment   // avoid
+// comment  // ok
+/*comment*/ // avoid
+/* comment */   // ok
+
+// No spacing in template strings
+const message = `Hello, ${ name }`  // avoid
+const message = `Hello, ${name}`    // ok
+
+// Use isNan() wen checking for Nan
+if (price === Nan) { } // avoid
+if (isNaN(price)) { } // ok
+
+// typeof must be compared to a valid string
+typeof name === 'undefined'; // avoid
+typeof name === 'undefined'; // ok
+
+// Immediately invoked function expressions (IIEFs) must be wrapped
+const geName = function () { }() // avoid
+
+const getName = (function () { } ()) // ok
+const getName = (function () { })() // ok
+
+// The * in yield* expressions must have a space before and after
+yield* increment() // avoid
+yield * increment() // ok
+
+// Avoid Yoda conditions
+if (42 === age) { } // avoid
+if (age === 42) { } // ok
+
+//======SEMICOLONS========
+// No semicolons
+window.alert('hi') // ok
+window.alert('hi'); // avoid
+
+// Never start a line with (, [, ` or a handful of other unlikely possibilities
+// ok
+;(function () {
+    window.alert('ok');
+}())
+
+// avoid
+(function () {
+    window.alert('ok')
+}())
+
+// ook
+;[1, 2, 3].forEach(bar);
+
+// avoid
+[1, 2, 3].forEach(bar);
+
+// ok
+;`hello`.indexOf('o');
+
